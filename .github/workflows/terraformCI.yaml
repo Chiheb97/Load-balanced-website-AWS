@@ -49,5 +49,4 @@ jobs:
           terraform_version: 0.14.7
 
       - name: Apply Terraform Changes
-        run: |
-          terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve tfplan
