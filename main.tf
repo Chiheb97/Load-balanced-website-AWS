@@ -80,7 +80,7 @@ module "target_group" {
   aws_vpc_id = module.networking.vpc_id
   path_health_check = "/"
   servers = 2
-  target_ids = module.ec2_instances[*].instance_ids
+  target_ids = module.ec2_instances.instance_ids
   region = "eu-west-1"
   
 }
