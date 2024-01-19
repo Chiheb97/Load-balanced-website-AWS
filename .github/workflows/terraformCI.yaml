@@ -1,7 +1,7 @@
 name: Terraform CI
 
 on:
-  push:
+  pull_request:
     branches:
       - "*"
 
@@ -29,24 +29,11 @@ jobs:
       - name: Validate Terraform
         run: terraform validate
 
-    - name: Terraform Plan
+    - name: Security Scan
       runs-on: ubuntu-latest
       steps:
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.14.7
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Plan Terraform Changes
-        run: terraform plan -out=tfplan
-
-    - name: Terraform Apply
-      runs-on: ubuntu-latest
-      steps:
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.14.7
-
-      - name: Apply Terraform Changes
-        run: terraform apply -auto-approve tfplan
+      - name: Security Scan
+        uses: atlassian/git-secrets-scan@0.5.1
