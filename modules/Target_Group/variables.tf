@@ -13,10 +13,6 @@ variable "alb_target_group_name" {
   description = "target group name"
 }
 
-variable "path_health_check" {
-  description = "health check path"
-}
-
 variable "aws_vpc_id" {
   description = "vpc id"
 }

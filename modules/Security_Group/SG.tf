@@ -1,20 +1,33 @@
-resource "aws_security_group" "studocu_sg" {
-  name        = var.sg_name
-  description = var.description
-  vpc_id      = var.vpc_id
-  tags = {
-     Name = var.sg_name
+resource "aws_security_group" "allow_alb" {
+  vpc_id = var.vpc_id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-     from_port =var.from_port
-     to_port = var.to_port
-     protocol = "tcp"
-     cidr_blocks = ["0.0.0.0/0"]
+     from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+}
+
+resource "aws_security_group" "allow_ec2" {
+  vpc_id = var.vpc_id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }

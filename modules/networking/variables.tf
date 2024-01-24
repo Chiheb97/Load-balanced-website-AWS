@@ -36,3 +36,18 @@ variable "rt_private" {
   variable "vpc_name"{
     
   }
+ variable  "igw_name"{
+
+ }
+ variable "cidr_subnet_pub"{
+
+ }
+ variable "subnet_public_name"{
+
+ }
+  variable "cidr_subnet_pub2"{
+
+ }
+ variable "subnet_public_name2"{
+  
+ }
